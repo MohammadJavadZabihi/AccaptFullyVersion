@@ -1,0 +1,74 @@
+﻿using AccaptFullyVersion.Core.DTOs;
+using AccaptFullyVersion.Core.Servies.Interface;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace AccaptFullyVersion.API.Controllers
+{
+    [Route("api/UserAccount(V1)")]
+    [ApiController]
+    public class UserAccountController : ControllerBase
+    {
+        #region Injection
+
+        private readonly IUserServies _userServies;
+        public UserAccountController(IUserServies userServies)
+        {
+            _userServies = userServies ?? throw new ArgumentException(nameof(userServies));
+        }
+
+        #endregion
+
+        #region Register User Account
+
+        [Route("RUA(V1)")]
+        public async Task<IActionResult> RegisterUser(UserRegisterViewModel user)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (user == null)
+                return BadRequest("User Model Is NULL");
+
+            if (await _userServies.IsExistUserName(user.UserName))
+                return BadRequest("This UserName Is Not Available at This Time, Pleas Select The Difrent UserName");
+
+            if (await _userServies.IsExistEmailAddress(user.Email))
+                return BadRequest("This Email Has been already Registered");
+
+            var userRegisterStatuce = await _userServies.RegisterUser(user);
+
+            if (!userRegisterStatuce)
+                return BadRequest("The Register Operation is not successfully");
+
+            return Ok("User Register Successfully");
+        }
+
+        #endregion
+
+        #region Login User Account
+
+        [Route("LUA(V1)")]
+        public async Task<IActionResult> LoginUser(UserLoginViewModel user)
+        {
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (user == null)
+                return BadRequest("User Model Is NULL");
+
+            var userLoginStatuce = await _userServies.LoginUser(user);
+
+            if (!userLoginStatuce)
+                return BadRequest("Email Or Password is Wrong");
+
+            return Ok(new
+            {
+                UserLoginStatuce = "The User Has been Login Successfully",
+                UserEmail = user.Email
+            });
+        }
+
+        #endregion
+    }
+}
