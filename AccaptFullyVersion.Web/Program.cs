@@ -1,7 +1,17 @@
+using AccaptFullyVersion.Core.Servies;
+using AccaptFullyVersion.Core.Servies.Interface;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddMvc();
 builder.Services.AddControllersWithViews();
+
+#region IOC
+
+builder.Services.AddTransient<IApiCallServies, ApiCallServies>();
+
+#endregion
+
 
 var app = builder.Build();
 

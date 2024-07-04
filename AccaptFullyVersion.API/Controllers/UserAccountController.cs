@@ -21,6 +21,7 @@ namespace AccaptFullyVersion.API.Controllers
 
         #region Register User Account
 
+        [HttpPost]
         [Route("RUA(V1)")]
         public async Task<IActionResult> RegisterUser(UserRegisterViewModel user)
         {
@@ -48,6 +49,7 @@ namespace AccaptFullyVersion.API.Controllers
 
         #region Login User Account
 
+        [HttpPost]
         [Route("LUA(V1)")]
         public async Task<IActionResult> LoginUser(UserLoginViewModel user)
         {

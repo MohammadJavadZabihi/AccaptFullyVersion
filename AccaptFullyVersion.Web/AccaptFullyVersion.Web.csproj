@@ -145,6 +145,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -282,6 +283,10 @@
     <None Include="wwwroot\assets\plugins\fontawesome\webfonts\fa-solid-900.woff2" />
     <None Include="wwwroot\assets\plugins\fontawesome\webfonts\fa-solid-900d41d.eot" />
     <None Include="wwwroot\assets\plugins\hover-master\css\hover-min.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AccaptFullyVersion.Core\AccaptFullyVersion.Core.csproj" />
   </ItemGroup>
 
 </Project>
