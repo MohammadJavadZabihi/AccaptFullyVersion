@@ -289,4 +289,8 @@
     <ProjectReference Include="..\AccaptFullyVersion.Core\AccaptFullyVersion.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\UserAccountController\" />
+  </ItemGroup>
+
 </Project>

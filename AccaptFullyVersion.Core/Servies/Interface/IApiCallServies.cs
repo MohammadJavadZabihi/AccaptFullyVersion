@@ -8,6 +8,6 @@ namespace AccaptFullyVersion.Core.Servies.Interface
 {
     public interface IApiCallServies
     {
-        Task<string> SendPostReauest(string url, object data); 
+        Task<HttpResponseMessage> SendPostReauest(string url, object data); 
     }
 }
