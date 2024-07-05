@@ -27,9 +27,9 @@ namespace AccaptFullyVersion.Core.Servies
             throw new NotImplementedException();
         }
 
-        public Task<User?> FindeUSerByEmail(string email)
+        public async Task<User?> FindeUSerByEmail(string email)
         {
-            throw new NotImplementedException();
+            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
 
         public Task<User?> FindeUserByeUserName(string username)

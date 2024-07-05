@@ -64,6 +64,11 @@ namespace AccaptFullyVersion.API.Controllers
             if (!userLoginStatuce)
                 return BadRequest("Email Or Password is Wrong");
 
+            var exsistUser = await _userServies.FindeUSerByEmail(user.Email);
+
+            if (!exsistUser.IsActive)
+                return BadRequest("Your Account is not activated");
+
             return Ok(new
             {
                 UserLoginStatuce = "The User Has been Login Successfully",
