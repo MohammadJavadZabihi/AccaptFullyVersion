@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -43,6 +44,8 @@ namespace AccaptFullyVersion.Core.DTOs
         [Required(ErrorMessage = "Pleas Fill the {0}")]
         [MaxLength(200, ErrorMessage = "Invalid Password Input")]
         public string Password { get; set; } = string.Empty;
+
+        public bool RememberMe { get; set; }
     }
 
     public class UserUpdateAccountViewModel

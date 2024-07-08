@@ -5,6 +5,18 @@
 }
 
 <body>
+    @if (ViewBag.IsSuccess != null)
+    {
+        <div class="alert alert-success">
+            <p class="help-block">ورود با موفقیت انجام شد</p>
+        </div>
+
+        <script>
+            // Your delay in milliseconds
+            var delay = 3000;
+            setTimeout(function () { window.location = "https://localhost:7141/"; }, delay);
+        </script>
+    }
     <section class="inner-page" id="contact-page">
         <div class="container-fluid" id="page-hero">
             <div class="row">
@@ -47,6 +59,11 @@
                                 <div class="form-group">
                                     <label for="password">رمز عبور :</label>
                                     <input asp-for="Password" type="password" class="form-control" id="password">
+                                </div>
+
+                                <div class="remember-me">
+                                    <label for="rememberme"> مرا به خاطر بسپار</label>
+                                    <input asp-for="RememberMe" type="checkbox"/>
                                 </div>
 
                                 <div asp-validation-summary="All" class="text-danger">

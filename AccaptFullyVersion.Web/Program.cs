@@ -1,10 +1,27 @@
 using AccaptFullyVersion.Core.Servies;
 using AccaptFullyVersion.Core.Servies.Interface;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddMvc();
 builder.Services.AddControllersWithViews();
+
+#region Authenticate
+
+builder.Services.AddAuthentication(option =>
+{
+    option.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    option.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    option.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+}).AddCookie(option =>
+{
+    option.LoginPath = "/Login";
+    option.LogoutPath = "/Logout";
+    option.ExpireTimeSpan = TimeSpan.FromMinutes(43200);
+});
+
+#endregion
 
 #region IOC
 

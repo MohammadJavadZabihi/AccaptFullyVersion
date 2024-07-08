@@ -1,9 +1,12 @@
 ﻿using AccaptFullyVersion.Core.DTOs;
 using AccaptFullyVersion.Core.Servies.Interface;
 using Azure;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using Newtonsoft.Json;
+using System.Security.Claims;
 
 namespace AccaptFullyVersion.Web.Controllers
 {
@@ -84,7 +87,24 @@ namespace AccaptFullyVersion.Web.Controllers
             var response = await _apiCallServies.SendPostReauest("https://localhost:7205/api/UserAccount(V1)/LUA(V1)", data);
 
             if (response.IsSuccessStatusCode)
-                return Redirect("Index");
+            {
+                var claims = new List<Claim>()
+                {
+                    new Claim(ClaimTypes.Name, user.Email),
+                };
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var principal = new ClaimsPrincipal(identity);
+
+                var properties = new AuthenticationProperties
+                {
+                    IsPersistent = user.RememberMe
+                };
+
+                HttpContext.SignInAsync(principal, properties);
+
+                ViewBag.IsSucces = true;
+                return View();
+            }
             else
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
@@ -99,6 +119,17 @@ namespace AccaptFullyVersion.Web.Controllers
                     return View(user);
                 }
             }
+        }
+
+        #endregion
+
+        #region LogOut
+
+        [Route("Logout")]
+        public IActionResult LogOutingAccount()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return Redirect("/Login");
         }
 
         #endregion
