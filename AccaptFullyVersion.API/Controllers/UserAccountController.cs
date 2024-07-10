@@ -87,9 +87,31 @@ namespace AccaptFullyVersion.API.Controllers
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var user = _userServies.GetUserInfo(info.Email);
+            var user = await _userServies.GetUserInfo(info.UserName);
             if (user == null)
                 return BadRequest("nulluser");
+
+            return Ok(user);
+        }
+
+        #endregion
+
+        #region Find User by User Name
+
+        [Route("GUBN(V1)")]
+        [HttpPost]
+        public async Task<IActionResult> GetUserByName([FromBody]string username)
+        {
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if(username == null)
+                return BadRequest("UserName is null");
+
+            var user = _userServies.FindeUserByeUserName(username);
+
+            if(user == null)
+                return NotFound();
 
             return Ok(user);
         }

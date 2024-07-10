@@ -37,18 +37,15 @@ namespace AccaptFullyVersion.Core.Servies
             return await _context.Users.FirstOrDefaultAsync(u => u.UserName == username);
         }
 
-        public async Task<InformationUserViewModel> GetUserInfo(string email)
+        public async Task<InformationUserViewModel> GetUserInfo(string username)
         {
-            //var user = await FindeUSerByEmail(email);
-            //if(user !=null)
-            //{
-            //    InformationUserViewModel info = new InformationUserViewModel();
-            //    info.Email = user.Email;
-            //    info.UserName = user.UserName;
-            //    info.Wallet = 0;
-            //}
+            var user = await FindeUserByeUserName(username);
+            InformationUserViewModel info = new InformationUserViewModel();
+            info.UserName = user.UserName;
+            info.Email = user.Email;
+            info.Wallet = 0;
 
-            return null;
+            return info;
         }
 
         public async Task<bool> IsExistEmailAddress(string email)
