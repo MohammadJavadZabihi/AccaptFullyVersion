@@ -61,4 +61,11 @@ namespace AccaptFullyVersion.Core.DTOs
         [EmailAddress(ErrorMessage = "Email Most be like (example@gmail.com)")]
         public string Email { get; set; } = string.Empty;
     }
+
+    public class InformationUserViewModel
+    {
+        public string UserName { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public int Wallet { get; set; }
+    }
 }

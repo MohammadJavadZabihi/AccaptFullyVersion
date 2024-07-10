@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AccaptFullyVersion.DataLayer.Migrations
 {
     [DbContext(typeof(AccaptContext))]
-    [Migration("20240702153509_add_IsActive_fild_in_User_Table")]
-    partial class add_IsActive_fild_in_User_Table
+    [Migration("20240710130724_initalDatabase")]
+    partial class initalDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

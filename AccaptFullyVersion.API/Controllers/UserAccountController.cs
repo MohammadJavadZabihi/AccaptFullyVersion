@@ -77,5 +77,23 @@ namespace AccaptFullyVersion.API.Controllers
         }
 
         #endregion
+
+        #region Get User For UserPannel
+
+        [Route("GUINF(V1)")]
+        [HttpPost]
+        public async Task<IActionResult> GetUserInfo(InformationUserViewModel info)
+        {
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var user = _userServies.GetUserInfo(info.Email);
+            if (user == null)
+                return BadRequest("nulluser");
+
+            return Ok(user);
+        }
+
+        #endregion
     }
 }

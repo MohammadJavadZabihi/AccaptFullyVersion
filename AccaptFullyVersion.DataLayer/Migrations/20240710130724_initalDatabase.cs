@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AccaptFullyVersion.DataLayer.Migrations
 {
     /// <inheritdoc />
-    public partial class initialDatabse : Migration
+    public partial class initalDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,7 +21,8 @@ namespace AccaptFullyVersion.DataLayer.Migrations
                     Password = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     ActiveCode = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    RegisterDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    RegisterDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

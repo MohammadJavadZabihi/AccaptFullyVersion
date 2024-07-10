@@ -25,6 +25,7 @@ namespace AccaptFullyVersion.Core.Servies.Interface
         Task<User?> FindeUserByeUserName(string username);
         Task<User?> FindeUSerByActiveCode(string activeCode);
         Task<User?> FindeUSerByEmail(string email);
+        Task<InformationUserViewModel> GetUserInfo(string email);
 
         #endregion
     }

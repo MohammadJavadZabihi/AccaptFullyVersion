@@ -290,6 +290,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\UserPannel\Views\" />
     <Folder Include="Views\UserAccountController\" />
   </ItemGroup>
 
