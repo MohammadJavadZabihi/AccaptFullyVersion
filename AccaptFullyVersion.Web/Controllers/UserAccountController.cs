@@ -133,5 +133,32 @@ namespace AccaptFullyVersion.Web.Controllers
         }
 
         #endregion
+
+        #region User Pannel
+
+        [Route("UserPannel")]
+        public async Task<IActionResult> UserPannel()
+        {
+            var data = new
+            {
+                UserName = User.Identity.Name.ToString(),
+                Email = "mahan@gmail.com"
+            };
+
+            var responseMessage = await _apiCallServies.SendPostReauest("https://localhost:7205/api/UserAccount(V1)/GUINF(V1)", data);
+
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var respons = await responseMessage.Content.ReadAsStringAsync();
+
+                var user = JsonConvert.DeserializeObject<InformationUserViewModel>(respons);
+
+                return View(user);
+            }
+
+            return NotFound();
+        }
+
+        #endregion
     }
 }
