@@ -38,7 +38,7 @@ namespace AccaptFullyVersion.Core.DTOs
         [Display(Name = "UserName")]
         [Required(ErrorMessage = "Pleas Fill the {0}")]
         [MaxLength(150, ErrorMessage = "Invalid UserName Input")]
-        public string Email { get; set; } = string.Empty;
+        public string UserName { get; set; } = string.Empty;
 
         [Display(Name = "Password")]
         [Required(ErrorMessage = "Pleas Fill the {0}")]

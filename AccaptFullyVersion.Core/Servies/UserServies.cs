@@ -39,14 +39,16 @@ namespace AccaptFullyVersion.Core.Servies
 
         public async Task<InformationUserViewModel> GetUserInfo(string email)
         {
-            var user = await FindeUSerByEmail(email);
-            if(user !=null)
-            {
-                InformationUserViewModel info = new InformationUserViewModel();
-                info.Email = user.Email;
-                info.UserName = user.UserName;
-                info.Wallet = 0;
-            }
+            //var user = await FindeUSerByEmail(email);
+            //if(user !=null)
+            //{
+            //    InformationUserViewModel info = new InformationUserViewModel();
+            //    info.Email = user.Email;
+            //    info.UserName = user.UserName;
+            //    info.Wallet = 0;
+            //}
+
+            return null;
         }
 
         public async Task<bool> IsExistEmailAddress(string email)
@@ -64,7 +66,7 @@ namespace AccaptFullyVersion.Core.Servies
             if(user != null)
             {
                 string hashPass = PasswordHelper.EncodePasswordMd5(user.Password);
-                return await _context.Users.AnyAsync(u => u.Email == user.Email && u.Password == hashPass);
+                return await _context.Users.AnyAsync(u => u.Email == user.UserName && u.Password == hashPass);
             }
 
             return false;

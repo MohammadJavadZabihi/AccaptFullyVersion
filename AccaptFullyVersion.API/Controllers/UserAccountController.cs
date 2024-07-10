@@ -62,9 +62,9 @@ namespace AccaptFullyVersion.API.Controllers
             var userLoginStatuce = await _userServies.LoginUser(user);
 
             if (!userLoginStatuce)
-                return BadRequest("Email Or Password is Wrong");
+                return BadRequest("UserName Or Password is Wrong");
 
-            var exsistUser = await _userServies.FindeUSerByEmail(user.Email);
+            var exsistUser = await _userServies.FindeUserByeUserName(user.UserName);
 
             if (!exsistUser.IsActive)
                 return BadRequest("Your Account is not activated");
@@ -72,7 +72,7 @@ namespace AccaptFullyVersion.API.Controllers
             return Ok(new
             {
                 UserLoginStatuce = "The User Has been Login Successfully",
-                UserEmail = user.Email
+                UserEmail = user.UserName
             });
         }
 

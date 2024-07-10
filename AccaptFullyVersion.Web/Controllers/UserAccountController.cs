@@ -80,7 +80,7 @@ namespace AccaptFullyVersion.Web.Controllers
 
             var data = new
             {
-                Email = user.Email,
+                UserName = user.UserName,
                 Password = user.Password,
             };
 
@@ -90,7 +90,7 @@ namespace AccaptFullyVersion.Web.Controllers
             {
                 var claims = new List<Claim>()
                 {
-                    new Claim(ClaimTypes.Name, user.Email),
+                    new Claim(ClaimTypes.Name, user.UserName)
                 };
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var principal = new ClaimsPrincipal(identity);
