@@ -66,7 +66,7 @@ namespace AccaptFullyVersion.Core.Servies
             if(user != null)
             {
                 string hashPass = PasswordHelper.EncodePasswordMd5(user.Password);
-                return await _context.Users.AnyAsync(u => u.Email == user.UserName && u.Password == hashPass);
+                return await _context.Users.AnyAsync(u => u.UserName == user.UserName && u.Password == hashPass);
             }
 
             return false;
