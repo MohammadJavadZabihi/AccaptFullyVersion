@@ -1,9 +1,16 @@
 using AccaptFullyVersion.Core.Servies;
 using AccaptFullyVersion.Core.Servies.Interface;
 using AccaptFullyVersion.DataLayer.Context;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers(options =>
+{
+    options.ReturnHttpNotAcceptable = true;
+
+}).AddNewtonsoftJson();
 
 #region DataContext
 
@@ -15,6 +22,7 @@ builder.Services.AddDbContext<AccaptContext>(options =>
 #region IOC
 
 builder.Services.AddScoped<IUserServies, UserServies>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 #endregion
 

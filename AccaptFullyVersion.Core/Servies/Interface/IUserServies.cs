@@ -15,6 +15,7 @@ namespace AccaptFullyVersion.Core.Servies.Interface
         Task<bool> LoginUser(UserLoginViewModel user);
         Task<bool> RegisterUser(UserRegisterViewModel user);
         Task<User?> UpdateUser(UserUpdateAccountViewModel user);
+        public Task Save();
 
         #endregion
 
@@ -22,7 +23,7 @@ namespace AccaptFullyVersion.Core.Servies.Interface
 
         Task<bool> IsExistEmailAddress(string email);
         Task<bool> IsExistUserName(string username);
-        Task<User?> FindeUserByeUserName(string username);
+        Task<User> FindeUserByeUserName(string username);
         Task<User?> FindeUSerByActiveCode(string activeCode);
         Task<User?> FindeUSerByEmail(string email);
         Task<InformationUserViewModel> GetUserInfo(string username);

@@ -1,8 +1,10 @@
 ﻿using AccaptFullyVersion.Core.DTOs;
 using AccaptFullyVersion.Core.Servies.Interface;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
+using AutoMapper;
 
 namespace AccaptFullyVersion.API.Controllers
 {
@@ -13,9 +15,11 @@ namespace AccaptFullyVersion.API.Controllers
         #region Injection
 
         private readonly IUserServies _userServies;
-        public UserAccountController(IUserServies userServies)
+        private readonly IMapper _mapper;
+        public UserAccountController(IUserServies userServies, IMapper mapper)
         {
             _userServies = userServies ?? throw new ArgumentException(nameof(userServies));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         #endregion
@@ -121,20 +125,31 @@ namespace AccaptFullyVersion.API.Controllers
 
         #region Patch Update User
 
-        [HttpPut]
-        [Route("UPD(V1)")]
-        public async Task<IActionResult> UpdatedUser(UserUpdateAccountViewModel userUPD)
+        [HttpPatch]
+        [Route("UPD(V1){userName}")]
+        public async Task<IActionResult> UpdatedUser(string userName, [FromBody] JsonPatchDocument<UserUpdateAccountViewModel> patchDocument)
         {
-            if(!ModelState.IsValid)
+            if (patchDocument == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var user = await _userServies.UpdateUser(userUPD);
+            var user = await _userServies.FindeUserByeUserName(userName);
 
             if (user == null)
-                return BadRequest("User is null");
+                return NotFound();
+
+            var usertToPatch = _mapper.Map<UserUpdateAccountViewModel>(user);
+
+            patchDocument.ApplyTo(usertToPatch, ModelState);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            _mapper.Map(usertToPatch, user);
+            _userServies.Save();
 
             return Ok(user);
         }
+
 
         #endregion
     }

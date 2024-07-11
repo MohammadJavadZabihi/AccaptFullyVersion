@@ -5,6 +5,7 @@ using AccaptFullyVersion.Core.Secutiry;
 using AccaptFullyVersion.Core.Servies.Interface;
 using AccaptFullyVersion.DataLayer.Context;
 using AccaptFullyVersion.DataLayer.Entites;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,11 @@ namespace AccaptFullyVersion.Core.Servies
     public class UserServies : IUserServies
     {
         private readonly AccaptContext _context;
-        public UserServies(AccaptContext context)
+        private readonly IMapper _mapper;
+        public UserServies(AccaptContext context, IMapper mapper)
         {
             _context = context ?? throw new ArgumentException(nameof(context));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         public Task<User?> FindeUSerByActiveCode(string activeCode)
@@ -32,7 +35,7 @@ namespace AccaptFullyVersion.Core.Servies
             return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
 
-        public async Task<User?> FindeUserByeUserName(string username)
+        public async Task<User> FindeUserByeUserName(string username)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.UserName == username);
         }
@@ -101,27 +104,25 @@ namespace AccaptFullyVersion.Core.Servies
 
         public async Task<User?> UpdateUser(UserUpdateAccountViewModel user)
         {
+            if (user == null) return null;
+
+            var eUser = await FindeUserByeUserName(user.UserName);
+
             try
             {
-                if(user != null)
-                {
-                    User eUser = new User();
-
-                    eUser.UserName = user.UserName;
-                    eUser.Email = user.Email;
-
-                    _context.Users.Update(eUser);
-                    await _context.SaveChangesAsync();
-
-                    return eUser;
-                }
-
-                return null;
+                _context.Users.Update(eUser);
+                await _context.SaveChangesAsync();
+                return eUser;
             }
-            catch(Exception ex) 
+            catch (Exception)
             {
                 return null;
             }
+        }
+
+        public async Task Save() 
+        { 
+            await _context.SaveChangesAsync(); 
         }
     }
 }
