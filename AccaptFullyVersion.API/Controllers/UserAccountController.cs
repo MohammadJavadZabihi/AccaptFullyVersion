@@ -2,6 +2,7 @@
 using AccaptFullyVersion.Core.Servies.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 
 namespace AccaptFullyVersion.API.Controllers
 {
@@ -112,6 +113,25 @@ namespace AccaptFullyVersion.API.Controllers
 
             if(user == null)
                 return NotFound();
+
+            return Ok(user);
+        }
+
+        #endregion
+
+        #region Patch Update User
+
+        [HttpPut]
+        [Route("UPD(V1)")]
+        public async Task<IActionResult> UpdatedUser(UserUpdateAccountViewModel userUPD)
+        {
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var user = await _userServies.UpdateUser(userUPD);
+
+            if (user == null)
+                return BadRequest("User is null");
 
             return Ok(user);
         }

@@ -99,7 +99,7 @@ namespace AccaptFullyVersion.Core.Servies
             }
         }
 
-        public async Task<bool> UpdateUser(UserUpdateAccountViewModel user)
+        public async Task<User?> UpdateUser(UserUpdateAccountViewModel user)
         {
             try
             {
@@ -113,14 +113,14 @@ namespace AccaptFullyVersion.Core.Servies
                     _context.Users.Update(eUser);
                     await _context.SaveChangesAsync();
 
-                    return true;
+                    return eUser;
                 }
 
-                return false;
+                return null;
             }
-            catch
+            catch(Exception ex) 
             {
-                return false;
+                return null;
             }
         }
     }

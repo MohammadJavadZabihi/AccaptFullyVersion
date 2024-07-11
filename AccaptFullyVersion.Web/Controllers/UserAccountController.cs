@@ -3,6 +3,7 @@ using AccaptFullyVersion.Core.Servies.Interface;
 using Azure;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using Newtonsoft.Json;
@@ -30,7 +31,7 @@ namespace AccaptFullyVersion.Web.Controllers
         [Route("Register")]
         public async Task<IActionResult> Register(UserRegisterViewModel user)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return View(user);
 
             var data = new
@@ -75,7 +76,7 @@ namespace AccaptFullyVersion.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> LoginUserAccount(UserLoginViewModel user)
         {
-            if (!ModelState.IsValid) 
+            if (!ModelState.IsValid)
                 return View(user);
 
             var data = new
@@ -103,7 +104,7 @@ namespace AccaptFullyVersion.Web.Controllers
                 HttpContext.SignInAsync(principal, properties);
 
                 ViewBag.IsSucces = true;
-                return View();
+                return Redirect("UserPannel");
             }
             else
             {
@@ -137,6 +138,7 @@ namespace AccaptFullyVersion.Web.Controllers
         #region User Pannel
 
         [Route("UserPannel")]
+        [Authorize]
         public async Task<IActionResult> UserPannel()
         {
             var data = new
@@ -158,6 +160,12 @@ namespace AccaptFullyVersion.Web.Controllers
 
             return NotFound();
         }
+
+        #endregion
+
+        #region Edite User Profile
+
+
 
         #endregion
     }
