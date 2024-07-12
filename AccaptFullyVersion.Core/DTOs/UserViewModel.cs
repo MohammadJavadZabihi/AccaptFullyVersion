@@ -76,4 +76,9 @@ namespace AccaptFullyVersion.Core.DTOs
         public int Wallet { get; set; }
     }
 
+    public class UserNameViewModel
+    {
+        public string UserName { get; set; } = string.Empty;
+    }
+
 }

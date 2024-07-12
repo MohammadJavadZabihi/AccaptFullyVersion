@@ -1,7 +1,7 @@
-﻿@model AccaptFullyVersion.Core.DTOs.InformationUserViewModel
+﻿@model AccaptFullyVersion.Core.DTOs.UserUpdateAccountViewModel
 
 @{
-    ViewData["Title"] = "UserPannel";
+    ViewData["Title"] = "ویراش";
 }
 
 <section class="inner-page" id="profile-page">
@@ -17,7 +17,7 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="../index.html">صفحه نخست</a></li>
                                     <li class="breadcrumb-item"><a href="#">ناحیه کاربری</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">ویرایش پروفایل</li>
+                                    <li class="breadcrumb-item active" aria-current="page">آدرس های من</li>
                                 </ol>
                             </nav>
                         </div>
@@ -44,6 +44,7 @@
                                                 </span>
                                                 <span class="col-7 col-sm-8 col-lg-7 pt-0 pt-sm-2 pt-md-3 pt-lg-0 align-self-center">
                                                     <div id="full-name">@Model.UserName</div>
+                                                    <div class="mt-2" id="email-mobile">@Model.Email</div>
                                                 </span>
                                             </span>
                                         </button>
@@ -79,13 +80,6 @@
                                                         </div>
                                                     </a>
                                                 </li>
-                                                <li>
-                                                    <a href="paaword.html">
-                                                        <div>
-                                                            <div class="icon d-inline-block"><img src="../assets/images/icons/profile-menu/password.webp" class="pl-2"></div> تغیر رمز عبور
-                                                        </div>
-                                                    </a>
-                                                </li>
                                                 <li><hr></li>
                                                 <li>
                                                     <a href="../index.html">
@@ -102,97 +96,89 @@
                             <!-- /Side Panel -->
                         </div>
                         <div class="col-12 col-lg-9 pl-lg-0 pr-lg-2 mt-2 mt-lg-0">
-                            <!-- Profile Fields -->
-                            <div class="custom-container bg-light" id="profile-fields">
-                                <div class="row pt-2 px-3 ">
-                                    <div class="col-12"><h1>اطلاعات شخصی</h1></div>
+                            <!-- New User Info -->
+                            <form asp-action="PatchUserUpdate" class="custom-container mb-2" id="new-address">
+                                <div class="row pt-2 px-3">
+                                    <div class="col-12"><h1>تغیرات اطلاعات کاربری</h1></div>
                                 </div>
                                 <hr>
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-12 col-sm-6 profile-field py-2">
+                                        <div class="col-12 pt-3">
                                             <div class="row">
-                                                <div class="col-10">
-                                                    <div class="title">نام و نام خانوادگی</div>
-                                                    <div class="value">@Model.UserName</div>
+                                                <div class="col-12 col-md-4 pl-2">
+                                                    <div class="form-group m-1">
+                                                        <label for="username">نام کاربری:</label>
+                                                        <input type="text" name="UserName" id="username" class="form-control">
+                                                    </div>
                                                 </div>
-                                                <div class="col-2">
-                                                    <a href="/UpdateUser" class="float-left" data-toggle="modal" data-target="#fullNameModal"><i class="fa fa-edit"></i></a>
+                                                <div class="col-12 col-md-4 pl-2">
+                                                    <div class="form-group m-1">
+                                                        <label for="email">ایمیل:</label>
+                                                        <input type="email" name="Email" id="email" class="form-control">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-sm-6 profile-field py-2">
-                                            <div class="row">
-                                                <div class="col-10">
-                                                    <div class="title">پست الکترونیک</div>
-                                                    <div class="value">@Model.Email</div>
-                                                </div>
-                                                <div class="col-2">
-                                                    <a href="/UpdateUser" class="float-left" data-toggle="modal" data-target="#emailModal"><i class="fa fa-edit"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Profile Fields -->
-                            <!-- Latest Orders -->
-                            <div class="mt-2 order">
-                                <div class="row pt-2 px-3">
-                                    <div class="col-12"><h2>آخرین سفارش ها</h2></div>
-                                </div>
-                            </div>
-                            <div class="custom-container mt-2 order">
-                                <div class="row pt-2 px-3">
-                                    <div class="col-12 col-sm-6"><h2>سفارش شماره #1234</h2></div>
-                                    <div class="col-12 col-sm-6 text-sm-end"><span>20 مرداد 1400</span> - <span>پرداخت شده</span></div>
-                                </div>
-                                <hr>
-                                <div class="container">
-                                    <div class="row py-2">
-                                        <div class="col-12">
-                                            <div>
-                                                <div class="header">
-                                                    <div class="total py-1"><span>مبلغ کل:</span> 3.000.000 تومان</div>
-                                                </div>
-                                                <div class="container products px-0">
-                                                    <div class="row">
-                                                        <!-- Order Record -->
-                                                        <span class="col-12 col-sm-6 col-lg-4 col-xl-3 px-1">
-                                                            <a href="../product.html" target="_blank">
-                                                                <div class="encode4326654321vfb">
-                                                                    <div class="image" style="background-image: url('../assets/images/products/p100.png')"></div>
-                                                                    <div class="text-center px-1 px-sm-3">
-                                                                        <h2>گوشی موبایل سامسونگ مدل Galaxy A21s</h2>
-                                                                        <div class="number">تعداد: 1 عدد</div>
-                                                                        <div class="encode4365gbf265g43d">مبلغ: 3.000.000 عدد</div>
-                                                                    </div>
-                                                                </div>
-                                                            </a>
-                                                        </span>
-                                                        <!-- /Order Record -->
-                                                        <!-- Order Record -->
-                                                        <span class="col-12 col-sm-6 col-lg-4 col-xl-3 px-1">
-                                                            <a href="../product.html" target="_blank">
-                                                                <div class="encode4326654321vfb">
-                                                                    <div class="image" style="background-image: url('../assets/images/products/p100.png')"></div>
-                                                                    <div class="text-center px-1 px-sm-3">
-                                                                        <h2>گوشی موبایل سامسونگ مدل Galaxy A21s</h2>
-                                                                        <div class="number">تعداد: 1 عدد</div>
-                                                                        <div class="encode4365gbf265g43d">مبلغ: 3.000.000 عدد</div>
-                                                                    </div>
-                                                                </div>
-                                                            </a>
-                                                        </span>
-                                                        <!-- /Order Record -->
+                                                <div class="col-12">
+                                                    <div class="form-group m-1 pb-3">
+                                                        <input type="submit" class="btn btn-primary px-5" value="ذخیره آدرس">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </form>
+                            <div class="custom-container mb-2" id="new-address">
                             </div>
-                            <!-- Latest Orders -->
+                            <!-- /New Address Form -->
+                            <!-- User Addresses -->
+                            <div class="custom-container" id="addresses">
+                                <div class="row pt-2 px-3">
+                                    <div class="col-12"><h1>آدرس های من</h1></div>
+                                </div>
+                                <hr>
+                                <div class="container">
+                                    <div class="row">
+                                        <!-- Address Record -->
+                                        <div class="col-12 address py-2">
+                                            <div class="row">
+                                                <div class="col-12 col-sm-10">
+                                                    <div class="title">تهران، بلوار ولی عصر</div>
+                                                    <div class="sub-title">تهران، تهران</div>
+                                                    <div class="sub-title">1234567890</div>
+                                                    <div class="sub-title">امید کریمی</div>
+                                                    <div class="sub-title">02112345678</div>
+                                                </div>
+                                                <div class="col-12 col-sm-2 text-lg-end">
+                                                    <a href="#" onclick="return confirm('آیا جهت حذف این آدرس اطمینان دارید؟')" class="float-right float-sm-left pr-2 pl-sm-2"><i class="fa fa-trash-alt font-weight-normal"></i></a>
+                                                    <a href="#" class="float-right float-sm-left"><i class="fa fa-edit font-weight-normal"></i></a>
+                                                    <a href="#" class="float-right float-sm-left ml-2" title="آدرس پیش فرض"><i class="fa fa-check-circle" style="color: #fcb941"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Address Record -->
+                                        <!-- Address Record -->
+                                        <div class="col-12 address py-2">
+                                            <div class="row">
+                                                <div class="col-12 col-sm-10">
+                                                    <div class="title">تهران، بلوار ولی عصر</div>
+                                                    <div class="sub-title">تهران، تهران</div>
+                                                    <div class="sub-title">1234567890</div>
+                                                    <div class="sub-title">امید کریمی</div>
+                                                    <div class="sub-title">02112345678</div>
+                                                </div>
+                                                <div class="col-12 col-sm-2 text-lg-end">
+                                                    <a href="#" onclick="return confirm('آیا جهت حذف این آدرس اطمینان دارید؟')" class="float-right float-sm-left pr-2 pl-sm-2"><i class="fa fa-trash-alt font-weight-normal"></i></a>
+                                                    <a href="#" class="float-right float-sm-left"><i class="fa fa-edit font-weight-normal"></i></a>
+                                                    <a href="#" class="float-right float-sm-left ml-2" title="آدرس پیش فرض"><i class="fa fa-circle-notch"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Address Record -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /User Addresses -->
                         </div>
                     </div>
                 </div>
@@ -200,5 +186,4 @@
         </div>
     </div>
 </section>
-
 

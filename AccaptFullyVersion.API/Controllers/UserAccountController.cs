@@ -105,7 +105,7 @@ namespace AccaptFullyVersion.API.Controllers
 
         [Route("GUBN(V1)")]
         [HttpPost]
-        public async Task<IActionResult> GetUserByName([FromBody]string username)
+        public async Task<IActionResult> GetUserByName(UserNameViewModel username)
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -113,7 +113,7 @@ namespace AccaptFullyVersion.API.Controllers
             if(username == null)
                 return BadRequest("UserName is null");
 
-            var user = _userServies.FindeUserByeUserName(username);
+            var user = _userServies.FindeUserByeUserName(username.UserName);
 
             if(user == null)
                 return NotFound();
@@ -152,5 +152,7 @@ namespace AccaptFullyVersion.API.Controllers
 
 
         #endregion
+
+
     }
 }

@@ -11,6 +11,21 @@ namespace AccaptFullyVersion.Core.Servies
 {
     public class ApiCallServies : IApiCallServies
     {
+        public async Task<HttpResponseMessage> SendPatchRequest(string url, object data)
+        {
+            using (var client = new HttpClient())
+            {
+                var json = JsonConvert.SerializeObject(data);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var request = new HttpRequestMessage(new HttpMethod("PATCH"), url)
+                {
+                    Content = content
+                };
+
+                return await client.SendAsync(request);
+            }
+        }
+
         public async Task<HttpResponseMessage> SendPostReauest(string url, object data)
         {
             using(var client = new HttpClient())

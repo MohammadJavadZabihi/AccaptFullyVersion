@@ -1,5 +1,6 @@
 ﻿using AccaptFullyVersion.Core.DTOs;
 using AccaptFullyVersion.Core.Servies.Interface;
+using AccaptFullyVersion.DataLayer.Entites;
 using Azure;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -165,7 +166,44 @@ namespace AccaptFullyVersion.Web.Controllers
 
         #region Edite User Profile
 
+        [Route("UpdateUser")]
+        public IActionResult PatchUserUpdate()
+        {
+            return View();
+        }
 
+
+        [Route("UpdateUser")]
+        [HttpPatch]
+        public async Task<IActionResult> PatchUserUpdate(UserUpdateAccountViewModel userUP)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+
+            var dataUser = new
+            {
+                UserName = User.Identity.Name.ToString(),
+                Email = "mahan@gmail.com"
+            };
+
+            var userExist = await _apiCallServies.SendPostReauest("https://localhost:7205/api/UserAccount(V1)/GUBN(V1)", dataUser);
+
+            if(userExist.IsSuccessStatusCode)
+            {
+                var response = await userExist.Content.ReadAsStringAsync();
+                var user = JsonConvert.DeserializeObject<User>(response);
+
+                var data = await _apiCallServies.SendPatchRequest($"https://localhost:7205/api/UserAccount(V1)/UPD(V1)/{User.Identity.Name}", userUP);
+
+                if (data.IsSuccessStatusCode)
+                    return View(user);
+                else
+                    return View();
+            }
+
+            return View();
+
+        }
 
         #endregion
     }
