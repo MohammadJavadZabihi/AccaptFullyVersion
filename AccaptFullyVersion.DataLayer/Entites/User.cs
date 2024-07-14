@@ -9,8 +9,13 @@ namespace AccaptFullyVersion.DataLayer.Entites
 {
     public class User
     {
+        public User()
+        {
+            
+        }
+
         [Key]
-        public int Id { get; set; }
+        public int UserId { get; set; }
 
         [Required]
         [MaxLength(150)]
@@ -31,5 +36,8 @@ namespace AccaptFullyVersion.DataLayer.Entites
         public DateTime RegisterDate { get; set; }
 
         public bool IsActive { get; set; }
+
+
+        public Wallet Wallet { get; set; }
     }
 }

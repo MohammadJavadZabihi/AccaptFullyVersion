@@ -72,7 +72,7 @@ namespace AccaptFullyVersion.Core.Servies
             return false;
         }
 
-        public async Task<bool> RegisterUser(UserRegisterViewModel user)
+        public async Task<User?> RegisterUser(UserRegisterViewModel user)
         {
             try
             {
@@ -91,14 +91,14 @@ namespace AccaptFullyVersion.Core.Servies
                     await _context.AddAsync(eUser);
                     await _context.SaveChangesAsync();
 
-                    return true;
+                    return eUser;
                 }
 
-                return false;
+                return null;
             }
             catch
             {
-                return false;
+                return null;
             }
         }
 
@@ -123,6 +123,11 @@ namespace AccaptFullyVersion.Core.Servies
         public async Task Save() 
         { 
             await _context.SaveChangesAsync(); 
+        }
+
+        public async Task<User?> GetUserById(int id)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.UserId == id);
         }
     }
 }

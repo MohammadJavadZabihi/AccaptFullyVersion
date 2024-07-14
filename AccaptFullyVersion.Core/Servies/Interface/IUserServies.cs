@@ -13,7 +13,7 @@ namespace AccaptFullyVersion.Core.Servies.Interface
         #region User Account Servies
 
         Task<bool> LoginUser(UserLoginViewModel user);
-        Task<bool> RegisterUser(UserRegisterViewModel user);
+        Task<User?> RegisterUser(UserRegisterViewModel user);
         Task<User?> UpdateUser(UserUpdateAccountViewModel user);
         public Task Save();
 
@@ -27,6 +27,7 @@ namespace AccaptFullyVersion.Core.Servies.Interface
         Task<User?> FindeUSerByActiveCode(string activeCode);
         Task<User?> FindeUSerByEmail(string email);
         Task<InformationUserViewModel> GetUserInfo(string username);
+        Task<User?> GetUserById(int id);
 
         #endregion
     }
