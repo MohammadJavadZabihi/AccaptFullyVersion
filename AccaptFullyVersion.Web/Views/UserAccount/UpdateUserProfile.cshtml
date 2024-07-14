@@ -1,0 +1,180 @@
+﻿@model AccaptFullyVersion.Core.DTOs.UserUpdateAccountViewModel
+
+
+@{
+    ViewData["Title"] = "UpdateUserProfile";
+}
+
+<!doctype html>
+<html lang="fa" dir="rtl">
+
+<!-- Mirrored from rubik-market-html.wbrk.ir/profile/addresses.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 12 Aug 2023 06:32:51 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>قالب فروشگاهی روبیک مارکت</title>
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="../assets/plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../assets/plugins/aos-master/dist/aos.css">
+    <link rel="stylesheet" href="../assets/plugins/hover-master/css/hover-min.css">
+    <link rel="stylesheet" href="../assets/css/ionicons.css">
+    <link rel="stylesheet" href="../assets/css/droopmenu.css">
+    <link rel="stylesheet" href="../assets/css/highlight.css">
+    <link rel="stylesheet" href="../assets/css/nouislider.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <!-- /CSS Styles -->
+</head>
+<body>
+
+    <section class="inner-page" id="profile-page">
+        <div class="container-fluid" id="page-hero">
+            <div class="row">
+                <div class="col-12">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 px-0">
+                                <h1>ناحیه کاربری</h1>
+                                <p>به ناحیه کاربری روبیک مارکت خوش آمدید.</p>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="../index.html">صفحه نخست</a></li>
+                                        <li class="breadcrumb-item"><a href="#">ناحیه کاربری</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">آدرس های من</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-12 col-lg-3">
+                                <!-- Side Panel -->
+                                <div class="accordion" id="side-panel">
+                                    <div class="accordion-item menu-container">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                                <span class="row">
+                                                    <span class="col-3 col-sm-2 col-lg-3">
+                                                        <img src="../assets/images/user-no-image.jpg" class="rounded-circle">
+                                                    </span>
+                                                    <span class="col-7 col-sm-8 col-lg-7 pt-0 pt-sm-2 pt-md-3 pt-lg-0 align-self-center">
+                                                        <div id="full-name">@Model.UserName</div>
+                                                        <div class="mt-2" id="email-mobile">09351234567</div>
+                                                    </span>
+                                                </span>
+                                            </button>
+                                        </h2>
+                                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                                            <div class="accordion-body">
+                                                <ul>
+                                                    <li>
+                                                        <a href="personal-info.html" class="active">
+                                                            <div>
+                                                                <div class="icon d-inline-block"><img src="../assets/images/icons/profile-menu/profile.webp" class="pl-2"></div> اطلاعات حساب
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="factors.html">
+                                                            <div>
+                                                                <div class="icon d-inline-block"><img src="../assets/images/icons/profile-menu/orders.webp" class="pl-2"></div> سفارش های من
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="favorites.html">
+                                                            <div>
+                                                                <div class="icon d-inline-block"><img src="../assets/images/icons/profile-menu/favorites.webp" class="pl-2"></div> علاقه مندی ها
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="addresses.html">
+                                                            <div>
+                                                                <div class="icon d-inline-block"><img src="../assets/images/icons/profile-menu/addresses.webp" class="pl-2"></div> آدرس های من
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                    <li><hr></li>
+                                                    <li>
+                                                        <a href="../index.html">
+                                                            <div>
+                                                                <div class="icon d-inline-block"><img src="../assets/images/icons/profile-menu/exit.webp" class="pl-2"></div> خروج از حساب
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Side Panel -->
+                            </div>
+                            <div class="col-12 col-lg-9 pl-lg-0 pr-lg-2 mt-2 mt-lg-0">
+                                <!-- New Address Form -->
+                                <div class="custom-container mb-2" id="new-address">
+                                    <div class="row pt-2 px-3">
+                                        <div class="col-12"><h1>ویرایش حساب کاربری</h1></div>
+                                    </div>
+                                    <hr>
+                                    <form asp-action="UpdateUserProfile" method="post">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-12 pt-3">
+                                                    <div class="row">
+                                                        <div class="col-12 col-md-4 pl-2">
+                                                            <div class="form-group m-1">
+                                                                <label for="UserName">نام کاربری</label>
+                                                                <input asp-for="UserName" name="UserName" id="UserName" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-md-4 pl-2">
+                                                            <label for="Email">ایمیل</label>
+                                                            <input asp-for="Email" name="Email" id="Email" class="form-control" />
+                                                        </div>
+
+                                                        <div asp-validation-summary="All" class="text-danger">
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <div class="form-group m-1 pb-3">
+                                                                <input type="submit" class="btn btn-primary px-5" value="ذخیره آدرس">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/plugins/fontawesome/js/all.min.js"></script>
+    <script src="../assets/plugins/aos-master/dist/aos.js"></script>
+    <script src="../assets/js/droopmenu.js"></script>
+    <script src="../assets/js/nouislider.min.js"></script>
+    <script src="../assets/js/pagination.js"></script>
+    <script src="../assets/js/scripts.js"></script>
+    <!-- /Scripts -->
+</body>
+
+<!-- Mirrored from rubik-market-html.wbrk.ir/profile/addresses.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 12 Aug 2023 06:32:51 GMT -->
+</html>

@@ -113,7 +113,7 @@ namespace AccaptFullyVersion.API.Controllers
             if(username == null)
                 return BadRequest("UserName is null");
 
-            var user = _userServies.FindeUserByeUserName(username);
+            var user = await _userServies.FindeUserByeUserName(username);
 
             if(user == null)
                 return NotFound();

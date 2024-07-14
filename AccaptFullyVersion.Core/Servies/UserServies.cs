@@ -35,7 +35,7 @@ namespace AccaptFullyVersion.Core.Servies
             return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
 
-        public async Task<User> FindeUserByeUserName(string username)
+        public async Task<User?> FindeUserByeUserName(string username)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.UserName == username);
         }

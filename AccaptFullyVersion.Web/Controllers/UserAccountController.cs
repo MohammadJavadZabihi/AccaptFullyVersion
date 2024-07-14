@@ -1,5 +1,6 @@
 ﻿using AccaptFullyVersion.Core.DTOs;
 using AccaptFullyVersion.Core.Servies.Interface;
+using AccaptFullyVersion.DataLayer.Entites;
 using Azure;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -165,8 +166,50 @@ namespace AccaptFullyVersion.Web.Controllers
 
         #region Edite User Profile
 
+        [Route("UserPannel/EditeUserPannel")]
+        public async Task<IActionResult> UpdateUserProfile()
+        {
+            var userName = User.Identity.Name;
 
+            var responseMessage = await _apiCallServies.SendPostReauest("https://localhost:7205/api/UserAccount(V1)/GUBN(V1)", userName);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var response = await responseMessage.Content.ReadAsStringAsync();
 
+                var user = JsonConvert.DeserializeObject<UserUpdateAccountViewModel>(response);
+
+                return View(user);
+            }
+
+            return NotFound();
+        }
+
+        [HttpPost("UserPannel/EditeUserPannel")]
+        public async Task<IActionResult> UpdateUserProfile(UserUpdateAccountViewModel userUPD)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(userUPD);
+            }
+
+            var patchData = new[]
+            {
+                new { op = "replace", path = "UserName", value = userUPD.UserName },
+                new { op = "replace", path = "Email", value = userUPD.Email }
+            };
+
+            var responseMessage = await _apiCallServies.SendPatchRequest($"https://localhost:7205/api/UserAccount(V1)/UPD(V1){User.Identity.Name}", patchData);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var response = await responseMessage.Content.ReadAsStringAsync();
+
+                var user = JsonConvert.DeserializeObject<User>(response);
+
+                return Redirect("/Logout");
+            }
+
+            return View(ModelState);
+        }
         #endregion
     }
 }
