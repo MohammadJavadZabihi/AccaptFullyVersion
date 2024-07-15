@@ -142,19 +142,28 @@ namespace AccaptFullyVersion.Web.Controllers
         [Authorize]
         public async Task<IActionResult> UserPannel()
         {
+            var userName = User.Identity.Name.ToString();
+
             var data = new
             {
-                UserName = User.Identity.Name.ToString(),
+                UserName = userName,
                 Email = "mahan@gmail.com"
             };
 
             var responseMessage = await _apiCallServies.SendPostReauest("https://localhost:7205/api/UserAccount(V1)/GUINF(V1)", data);
 
-            if (responseMessage.IsSuccessStatusCode)
+            var responseWalletUserMessage = await _apiCallServies.SendPostReauest("https://localhost:7205/api/UserAccount(V1)/FWUBN(V1)", userName);
+
+            if (responseMessage.IsSuccessStatusCode && responseWalletUserMessage.IsSuccessStatusCode)
             {
                 var respons = await responseMessage.Content.ReadAsStringAsync();
+                var responseWalletUser = await responseWalletUserMessage.Content.ReadAsStringAsync();
 
                 var user = JsonConvert.DeserializeObject<InformationUserViewModel>(respons);
+                var wallet = JsonConvert.DeserializeObject<Wallet>(respons);
+
+                var walletAmount = wallet.Amount;
+                user.Wallet = walletAmount;
 
                 return View(user);
             }

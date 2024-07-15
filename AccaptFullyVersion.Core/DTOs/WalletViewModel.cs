@@ -8,6 +8,7 @@ namespace AccaptFullyVersion.Core.DTOs
 {
     public class WalletViewModel
     {
-        public int MyProperty { get; set; }
+        public int Amount { get; set; }
+        public string UserName { get; set; } = string.Empty;
     }
 }
