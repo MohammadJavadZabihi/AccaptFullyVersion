@@ -22,6 +22,8 @@ builder.Services.AddDbContext<AccaptContext>(options =>
 #region IOC
 
 builder.Services.AddScoped<IUserServies, UserServies>();
+builder.Services.AddScoped<IWalletServies, WalletServies>();
+builder.Services.AddScoped<IProductServies, ProductServies>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 #endregion

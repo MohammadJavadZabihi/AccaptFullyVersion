@@ -10,5 +10,8 @@ namespace AccaptFullyVersion.Core.Servies.Interface
     {
         Task<HttpResponseMessage> SendPostReauest(string url, object data);
         Task<HttpResponseMessage> SendPatchRequest(string url, object data);
+        Task<HttpResponseMessage> SendPutRequest(string url, object data);
+        Task<HttpResponseMessage> SendDeletRequest(string url, object data);
+        Task<HttpResponseMessage> SendGetRequest(string url);
     }
 }

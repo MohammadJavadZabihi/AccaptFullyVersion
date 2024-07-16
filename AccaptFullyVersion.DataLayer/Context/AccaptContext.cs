@@ -18,6 +18,8 @@ namespace AccaptFullyVersion.DataLayer.Context
         #region User Table
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Wallet> Wallet { get; set; }
+        public DbSet<Product> Product { get; set; }
 
         #endregion
     }

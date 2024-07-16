@@ -1,6 +1,8 @@
 using AccaptFullyVersion.Core.Servies;
 using AccaptFullyVersion.Core.Servies.Interface;
+using AccaptFullyVersion.DataLayer.Context;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
@@ -28,7 +30,6 @@ builder.Services.AddAuthentication(option =>
 builder.Services.AddTransient<IApiCallServies, ApiCallServies>();
 
 #endregion
-
 
 var app = builder.Build();
 

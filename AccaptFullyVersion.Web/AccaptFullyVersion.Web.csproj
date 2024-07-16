@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\UserAccountController\**" />
+    <Content Remove="Views\UserAccountController\**" />
+    <EmbeddedResource Remove="Views\UserAccountController\**" />
+    <None Remove="Views\UserAccountController\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\assets\css\bootstrap.rtl.min.css" />
     <Content Remove="wwwroot\assets\css\droopmenu.css" />
     <Content Remove="wwwroot\assets\css\error-404.css" />
@@ -147,6 +154,10 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="8.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
@@ -290,10 +301,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AccaptFullyVersion.Core\AccaptFullyVersion.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\UserAccountController\" />
   </ItemGroup>
 
 </Project>
