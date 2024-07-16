@@ -16,7 +16,9 @@ namespace AccaptFullyVersion.API.Controllers
 
         private readonly IUserServies _userServies;
         private readonly IMapper _mapper;
-        public UserAccountController(IUserServies userServies, IMapper mapper)
+        public UserAccountController(IUserServies userServies,
+            IMapper mapper,
+            IWalletServies walletServies)
         {
             _userServies = userServies ?? throw new ArgumentException(nameof(userServies));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
@@ -44,7 +46,7 @@ namespace AccaptFullyVersion.API.Controllers
 
             var userRegisterStatuce = await _userServies.RegisterUser(user);
 
-            if (!userRegisterStatuce)
+            if (userRegisterStatuce == null)
                 return BadRequest("The Register Operation is not successfully");
 
             return Ok("User Register Successfully");
@@ -150,6 +152,21 @@ namespace AccaptFullyVersion.API.Controllers
             return Ok(user);
         }
 
+
+        #endregion
+
+        #region GetAllUsers
+
+        [HttpGet("GALU(V1)")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var users = await _userServies.GetAllUser();
+
+            if(users == null) 
+                return NotFound();
+
+            return Ok(users);
+        }
 
         #endregion
 

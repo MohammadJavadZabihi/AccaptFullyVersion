@@ -11,6 +11,33 @@ namespace AccaptFullyVersion.Core.Servies
 {
     public class ApiCallServies : IApiCallServies
     {
+        public async Task<HttpResponseMessage> SendDeletRequest(string url, object data)
+        {
+            using (var client = new HttpClient())
+            {
+                var json = JsonConvert.SerializeObject(data);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var request = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Delete,
+                    RequestUri = new Uri(url),
+                    Content = content
+                };
+
+                var response = await client.SendAsync(request);
+                return response;
+            }
+        }
+
+        public async Task<HttpResponseMessage> SendGetRequest(string url)
+        {
+            using (var client = new HttpClient())
+            {
+                var respone = await client.GetAsync(url);
+                return respone;
+            }
+        }
+
         public async Task<HttpResponseMessage> SendPatchRequest(string url, object data)
         {
             using (var client = new HttpClient())
@@ -29,6 +56,16 @@ namespace AccaptFullyVersion.Core.Servies
                 var json = JsonConvert.SerializeObject(data);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 return await client.PostAsync(url, content);
+            }
+        }
+
+        public async Task<HttpResponseMessage> SendPutRequest(string url, object data)
+        {
+            using (var client = new HttpClient())
+            {
+                var json = JsonConvert.SerializeObject(data);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                return await client.PutAsync(url, content);
             }
         }
     }
