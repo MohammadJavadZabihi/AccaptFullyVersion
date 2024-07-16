@@ -15,6 +15,7 @@ namespace AccaptFullyVersion.Core.Servies.Interface
         Task<bool> LoginUser(UserLoginViewModel user);
         Task<User?> RegisterUser(UserRegisterViewModel user);
         Task<User?> UpdateUser(UserUpdateAccountViewModel user);
+        Task<List<User>> GetAllUser();
         public Task Save();
 
         #endregion

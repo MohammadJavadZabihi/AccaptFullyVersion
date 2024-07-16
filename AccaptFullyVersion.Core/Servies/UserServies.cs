@@ -129,5 +129,10 @@ namespace AccaptFullyVersion.Core.Servies
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.UserId == id);
         }
+
+        public async Task<List<User>> GetAllUser()
+        {
+            return await _context.Users.ToListAsync();
+        }
     }
 }

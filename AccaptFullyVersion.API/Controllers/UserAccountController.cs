@@ -154,5 +154,20 @@ namespace AccaptFullyVersion.API.Controllers
 
 
         #endregion
+
+        #region GetAllUsers
+
+        [HttpGet("GALU(V1)")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var users = await _userServies.GetAllUser();
+
+            if(users == null) 
+                return NotFound();
+
+            return Ok(users);
+        }
+
+        #endregion
     }
 }
