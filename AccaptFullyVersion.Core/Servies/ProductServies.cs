@@ -65,9 +65,28 @@ namespace AccaptFullyVersion.Core.Servies
             return await _context.Product.FirstOrDefaultAsync(p => p.ProductName == productName);
         }
 
-        public async Task<List<Product>> GetProductList()
+        public async Task<List<ShowProductListItemViewModel>> GetProductList(int pahId = 1, int take = 0, string filter = "")
         {
-            return await _context.Product.ToListAsync();
+            if (take == 0)
+                take = 8;
+
+            IQueryable<Product> result = _context.Product;
+
+            if(!string.IsNullOrEmpty(filter))
+            {
+                result = result.Where(p => p.ProductName == filter);
+            }
+
+            int skip = (pahId - 1) * take;
+
+
+            return await result.Select(p => new ShowProductListItemViewModel()
+            {
+                Color = p.Color,
+                ProductId = p.ProductId,
+                ProductName = p.ProductName,
+                ProductPrice = p.ProductPrice
+            }).Skip(skip).Take(take).ToListAsync();
         }
 
         public async Task<Product?> UpdateProduct(ProductUpdateViewModel product, string proName)

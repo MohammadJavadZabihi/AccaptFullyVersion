@@ -80,10 +80,10 @@ namespace AccaptFullyVersion.API.Controllers
 
         #region GetAllProducts
 
-        [HttpGet("GALP(V1)")]
-        public async Task<IActionResult> GetAllProduct()
+        [HttpGet("GALP(V1)/{pahId}/{Take}/{filter}")]
+        public async Task<IActionResult> GetAllProduct(int pahId, int Take, string filter)
         {
-            var productList = await _productServies.GetProductList();
+            var productList = await _productServies.GetProductList(pahId, Take, filter);
 
             if(productList == null)
                 return NotFound();

@@ -107,7 +107,7 @@ namespace AccaptFullyVersion.API.Controllers
 
         [Route("GUBN(V1)")]
         [HttpPost]
-        public async Task<IActionResult> GetUserByName(UserNameViewModel username)
+        public async Task<IActionResult> GetUserByName([FromBody] string username)
         {
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);

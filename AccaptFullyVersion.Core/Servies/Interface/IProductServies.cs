@@ -14,6 +14,6 @@ namespace AccaptFullyVersion.Core.Servies.Interface
         Task<bool> DeletProduct(string productName);
         Task<Product?> UpdateProduct(ProductUpdateViewModel product, string proName);
         Task<Product?> FindeProductByProductName(string productName);
-        Task<List<Product>> GetProductList();
+        Task<List<ShowProductListItemViewModel>> GetProductList(int pahId = 1, int take = 0, string filter = "");
     }
 }
