@@ -92,5 +92,24 @@ namespace AccaptFullyVersion.API.Controllers
         }
 
         #endregion
+
+        #region GetSingleProduct
+
+        [HttpPost("GSP(V1)")]
+        public async Task<IActionResult> GetSingleProduct([FromBody]string productName)
+        {
+            if (productName == null)
+                return BadRequest("Product Is Null");
+
+            var product = await _productServies.FindeProductByProductName(productName);
+
+            if (product == null)
+                return NotFound();
+
+            return Ok(product);
+        }
+
+
+        #endregion
     }
 }

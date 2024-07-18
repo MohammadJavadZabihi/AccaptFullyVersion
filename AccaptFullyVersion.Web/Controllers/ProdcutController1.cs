@@ -1,5 +1,6 @@
 ﻿using AccaptFullyVersion.Core.DTOs;
 using AccaptFullyVersion.Core.Servies.Interface;
+using AccaptFullyVersion.DataLayer.Entites;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -13,20 +14,42 @@ namespace AccaptFullyVersion.Web.Controllers
             _apiCallServies = apiCallServies ?? throw new ArgumentException(nameof(apiCallServies));
         }
 
-        [Route("Products")]
-        public async Task<IActionResult> GetAllProduct(int pageId = 1, string filter = "")
+        [Route("{ProproductNameduct}")]
+        public async Task<IActionResult> GetAllProduct(string ProproductNameduct)
         {
-            var responseMessage = await _apiCallServies.SendGetRequest("https://localhost:7205/api/UserAccount(V1)/GALP(V1)/pageId/filter");
+            if (!ModelState.IsValid)
+                return View(ModelState);
 
-            if(responseMessage.IsSuccessStatusCode)
+            var responseMessage = await _apiCallServies.SendPostReauest("https://localhost:7205/api/UserAccount(V1)/GSP(V1)", ProproductNameduct);
+            if (responseMessage.IsSuccessStatusCode)
             {
-                var content = await responseMessage.Content.ReadAsStringAsync();
-                //var product = JsonConvert.DeserializeObject<ProductForShowViewModel>(content);
+                var response = await responseMessage.Content.ReadAsStringAsync();
 
-                return View();
+                var product = JsonConvert.DeserializeObject<Product>(response);
+
+                return View(product);
             }
 
             return NotFound();
         }
+
+        //[HttpPost("Products/{ProproductNameduct}")]
+        //public async Task<IActionResult> GetAllProduct(string ProproductNameduct)
+        //{
+        //    if(!ModelState.IsValid)
+        //        return View(ModelState);
+
+        //    var responseMessage = await _apiCallServies.SendPostReauest("https://localhost:7205/api/UserAccount(V1)/GSP(V1)", ProproductNameduct);
+        //    if(responseMessage.IsSuccessStatusCode)
+        //    {
+        //        var response = await responseMessage.Content.ReadAsStringAsync();
+
+        //        var product = JsonConvert.DeserializeObject<Product>(response);
+
+        //        return View(product);
+        //    }
+
+        //    return NotFound();
+        //}
     }
 }
