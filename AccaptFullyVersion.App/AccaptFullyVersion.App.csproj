@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\AccINC.png" />
+    <None Remove="Images\AppINC.png" />
+    <None Remove="Images\hmic.png" />
+    <None Remove="Images\VisualStudio.png" />
+    <None Remove="Images\VSCode.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AccaptFullyVersion.API\AccaptFullyVersion.API.csproj" />
+    <ProjectReference Include="..\AccaptFullyVersion.Core\AccaptFullyVersion.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\AccINC.png" />
+    <Resource Include="Images\AppINC.png" />
+    <Resource Include="Images\hmic.png" />
+    <Resource Include="Images\VisualStudio.png" />
+    <Resource Include="Images\VSCode.png" />
+  </ItemGroup>
+
+</Project>
