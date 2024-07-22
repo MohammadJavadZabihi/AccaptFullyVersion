@@ -5,8 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AccaptFullyVersion.App"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Visibility="Hidden">
+        Title="MainWindow" Height="800" Width="1080" Visibility="Visible" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent">
     <Grid>
+        <Border Background="#FFFFFF" CornerRadius="22">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
 
+                <Border Grid.Row="0" Width="900" Height="70" CornerRadius="20" BorderThickness="2" BorderBrush="#3A3A3A" Margin="0 0 0 0">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Style="{StaticResource MainMenuButton}" Content="Account" Margin="30 0 20 0"/>
+
+                        <Button Style="{StaticResource MainMenuButton}" Content="Bank"/>
+
+                        <Button Style="{StaticResource MainMenuButton}" Content="Billan"/>
+
+                        <Button Style="{StaticResource MainMenuButton}" Content="Store"/>
+
+                        <Button Style="{StaticResource MainMenuButton}" Content="Invoices"/>
+
+                        <Button Style="{StaticResource MainMenuButton}" Content="Setting"/>
+
+                    </StackPanel>
+                </Border>
+                
+            </Grid>
+        </Border>
     </Grid>
 </Window>

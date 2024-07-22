@@ -21,11 +21,11 @@ namespace AccaptFullyVersion.App
         public MainWindow()
         {
             InitializeComponent();
-            if (formId == -1)
-            {
-                LoginPage loginPage = new LoginPage(this);
-                loginPage.ShowDialog();
-            }
+            //if (formId == -1)
+            //{
+            //    LoginPage loginPage = new LoginPage(this);
+            //    loginPage.ShowDialog();
+            //}
         }
     }
 }

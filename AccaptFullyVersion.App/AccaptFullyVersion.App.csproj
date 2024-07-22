@@ -12,6 +12,7 @@
     <None Remove="Images\AccINC.png" />
     <None Remove="Images\AppINC.png" />
     <None Remove="Images\hmic.png" />
+    <None Remove="Images\Login_and_Register_Icon.png" />
     <None Remove="Images\VisualStudio.png" />
     <None Remove="Images\VSCode.png" />
   </ItemGroup>
@@ -25,6 +26,7 @@
     <Resource Include="Images\AccINC.png" />
     <Resource Include="Images\AppINC.png" />
     <Resource Include="Images\hmic.png" />
+    <Resource Include="Images\Login_and_Register_Icon.png" />
     <Resource Include="Images\VisualStudio.png" />
     <Resource Include="Images\VSCode.png" />
   </ItemGroup>
